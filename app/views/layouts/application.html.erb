@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Simpletodolist</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+    <div id="container">
+        <div id="status_login">
+          <h2><span id='app'>ToDoList</span></h2>
+          <%if user_signed_in? %>
+                  <p> Benvindo, <span id="email_user_logado"><%=current_user.email%> </span>! Não é você? <%= link_to 'Sair', destroy_user_session_path, :method => :delete %></p>
+          <%end%>
+        </div>
+        <%= yield %>
+    </div>
+</body>
+</html>

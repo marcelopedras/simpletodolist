@@ -1,0 +1,10 @@
+<h3><%=list_name%></h3>
+<div class='table_list'>
+<table>
+  <tbody>
+    <% lists.each do |l|%>
+        <%= render :partial => 'row_list', :locals=>{:l => l, :cor => cycle('cor1', 'cor2'), :my_class => my_class}%>
+    <%end%>
+  </tbody>
+</table>
+</div>

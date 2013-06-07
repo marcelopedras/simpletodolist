@@ -1,0 +1,6 @@
+<%=simple_form_for list, :url=> :new_list, :remote=>true do |l|%>
+    <%= l.input :title%>
+    <%= l.input :description %>
+    <%= l.input :public%>
+    <%= l.button :submit, id: 'submit_list_button'%>
+<%end%>

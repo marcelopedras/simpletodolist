@@ -1,0 +1,14 @@
+
+$('#manage_lists').append("<%= sanitize_html('show_results', {:results=>@results})%>");
+$('.results').click(function(){
+    $('#list').remove();
+    $.get('/show_public_list',
+            {
+                list_id: $(this).attr('list_id')
+            });
+});
+
+$(".clickable").click(function() {
+    $('.focus').removeClass('focus');
+    return $(this).addClass('focus');
+});

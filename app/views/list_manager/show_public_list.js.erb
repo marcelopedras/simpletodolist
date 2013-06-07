@@ -1,0 +1,30 @@
+$("<%=sanitize_html("show_list", {:list => @list, :editable => @editable})%>").appendTo("#public_lists");
+
+<%@list.tasks.each do |t| %>
+$('#append_task').append("<%=sanitize_html('show_task', {:task => t, :editable => @editable})%>");
+<%end%>
+
+if($('#append_task').children().size() >= 2)
+{
+    $('#append_task').accordion({collapsible: true});
+}
+
+<%if !current_user.this_is_my_favorite_list?(@list) %>
+    $('#list').append("<%=escape_javascript(image_button('add favorites', 'thumb_up', {:id=>'add_favorite', :alt => 'Adicione esta lista aos favoritos', :list_id => @list.id}).html_safe())%>");
+<%end%>
+
+$('#add_favorite').click(function(){
+    $.post('/add_favorite',{
+        list_id: $(this).attr('list_id')
+    });
+});
+
+$('#undo_favorite').click(function(){
+    $.post('/delete_favorite',{
+        list_id: $(this).attr('list_id'),
+        undo: true
+    });
+});
+
+
+

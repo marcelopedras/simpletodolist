@@ -1,0 +1,6 @@
+<%=simple_form_for task, :url=> :new_task, :remote=>true do |t|%>
+    <%= t.input :list_id, :as => :hidden%>
+    <%= t.input :title%>
+    <%= t.input :description %>
+    <%= t.button :submit, id: "#{submite_task_button}"%>
+<%end%>

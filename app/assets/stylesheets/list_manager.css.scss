@@ -1,0 +1,342 @@
+// Place all the styles related to the list_manager controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+$margin_size: 2px;
+$border_size: 1px;
+$espace: 2px;
+$container_width: 800px;
+$container_height: 700px;
+
+$action_height: ($container_height*0.1)-(3*$margin_size)-(2*$border_size);
+$list_height: ($container_height*0.6)-($margin_size)-($border_size);
+$favorite_height:($container_height*0.3)-($margin_size)-($border_size);
+
+$left_box_width: ($container_width/3);
+$rigth_box_width: $container_width -$left_box_width -$espace;
+
+$border_color: #98bf21;
+$margin-bottom: 30px;
+$focus_color: #8bffc7;
+
+#app
+{
+  float: left;
+}
+
+#container
+{
+  width: $container_width;
+  margin:0 auto;
+  text-align:left;
+  #background-color: red;
+  position: relative;
+  min-height: $container_height;
+}
+
+#status_login
+{
+  height: 30px;
+  width: inherit;
+  background-color: white;
+  text-align: right;
+  #email_user_logado
+  {
+    color: red;
+  }
+}
+
+#login_form, #signup_user_form, #forgot_password_form
+{
+  margin: 30px;
+  width: 300px;
+  background-color: $border_color;
+  text-align: left;
+  padding: 20px;
+  padding-right: 0px;
+  float: right;
+
+  input[type='password'], input[type='email']
+  {
+    width: 260px;
+
+  }
+  .user_remember_me
+  {
+    width: inherit;
+    text-align: right;
+    margin-right: 35px;
+  }
+  .form-actions
+  {
+    width: 100px;
+    //float: right;
+  }
+  a
+  {
+    margin-left: 130px;
+    padding: 3px;
+  }
+}
+
+.task_header
+{
+  height: 45px;
+
+  h2
+  {
+    font-size: 14px;
+    width: 451px;
+    height: 22px;
+    overflow: auto;
+    margin-top: 0px;
+  }
+}
+
+.description
+{
+  margin: 0px;
+  padding: 0px;
+}
+
+.description_label
+{
+  margin: 0px;
+  padding: 0px;
+  font-size: 14px;
+}
+
+.task p
+{
+  border:1px solid $border_color;
+  font-size: 14px;
+}
+
+#left_box
+{
+  width: $left_box_width -$border_size;
+  min-height: $container_height;
+  border:$border_size solid $border_color;
+  //background-color: blue;
+  float: left;
+  margin-bottom: $margin-bottom;
+
+
+  #actions
+  {
+    width: auto;
+    margin: $margin_size;
+    border:$border_size solid $border_color;
+
+    //background-color: red;
+    height: $action_height;
+
+  }
+
+  #show_lists
+  {
+    width: auto;
+    margin: $margin_size;
+    border:$border_size solid $border_color;
+
+    //background-color: blue;
+    height: $list_height;
+
+  }
+
+  #favorites
+  {
+    width: auto;
+    margin: $margin_size;
+    border:$border_size solid $border_color;
+
+    //background-color: red;
+    height: $favorite_height;
+
+  }
+}
+ #rigth_box
+ {
+   width: $rigth_box_width -$border_size -$margin_size -$espace;
+   min-height: $container_height;
+   border:$border_size solid $border_color;
+
+   //background-color: black;
+   float: right;
+   margin-bottom: $margin-bottom;
+
+  #manage_lists
+  {
+    width: auto;
+
+    border:$border_size solid $border_color;
+    margin: $margin_size;
+    //background-color: red;
+    height: $container_height -(2*$margin_size) -(2*$border_size);
+
+    #list
+    {
+      height: 658px;
+      #list_header
+      {
+        .title
+        {
+          background-color: $focus_color;
+          padding: 5px;
+          margin: $margin_size;
+          height: 20px;
+        }
+        p
+        {
+          background-color: $border_color;
+          padding: 5px;
+          margin: $margin_size;
+          height: 65px;
+        }
+        h3
+        {
+          margin: 5px;
+        }
+        button
+        {
+          margin: 0px;
+          margin-right: 3px;
+        }
+
+
+      }
+
+
+    }
+    #append_task
+    {
+      max-height: 455px;
+      overflow-y: auto;
+      margin: $margin_size;
+      padding: 2px;
+      border: $border_size solid $border_color;
+    }
+    .task
+    {
+      h2
+      {
+        margin: $margin_size;
+      }
+      p
+      {
+        height: 65px;
+        overflow-y: auto;
+      }
+    }
+  }
+ }
+
+ .add_button
+ {
+   background-image:url('/assets/images/add.png');
+ }
+
+ .hidden
+ {
+   display: none;
+ }
+
+ .cor1
+ {
+    background-color: $border_color;
+ }
+
+ .cor2
+ {
+    background-color: #cbffbd;
+ }
+
+ #show_lists, #favorites, #public_lists
+ {
+   h3
+   {
+     margin: $margin_size;
+   }
+   .table_list
+   {
+     height: 387px;
+     overflow-y: auto;
+     overflow-x: hidden;
+
+   }
+
+   table
+   {
+     width: 250px;
+     border: $border_size solid $border_color;
+
+   }
+ }
+
+ #favorites .table_list
+ {
+   height: 181px;
+ }
+
+ .clickable
+ {
+   cursor: pointer;
+   :hover
+   {
+     background-color: #b0ff40;
+   }
+ }
+
+ .focus
+ {
+   background-color: $focus_color;
+ }
+
+ .right
+ {
+   float: right;
+ }
+
+ .completed
+ {
+   color: green;
+ }
+
+ #public_lists
+ {
+   margin: $margin_size;
+   .table_list
+   {
+    height: 110px;
+    border: $border_size solid $border_color;
+    margin: $margin_size;
+    table
+    {
+      width: 511px;
+    }
+   }
+   #list
+   {
+     #append_task
+     {
+       max-height: 317px;
+       height: 317px;
+     }
+   }
+
+ }
+
+ #task_description
+ {
+   height: 554px;
+   max-height: 554px;
+   max-width: 335px;
+ }
+
+ #list_description
+ {
+   height: 530px;
+   max-height: 554px;
+   max-width: 335px;
+ }
+

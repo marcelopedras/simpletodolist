@@ -1,0 +1,18 @@
+$('#list_<%=@list.id%>').remove();
+$('#undo_favorite').remove();
+$('.focus').removeClass('.focus');
+$('#list').remove();
+$('#favorites').children().remove();
+$('#favorites').append("<%= sanitize_html('lists', {:list_name=>'My Favorites', :lists=>@favorites, :my_class => 'favorites'})%>");
+
+
+$(".favorites").click(function() {
+    return $.get('/show_favorite', {
+        list_id: $(this).attr('list_id')
+    });
+});
+
+$(".clickable").click(function() {
+    $('.focus').removeClass('focus');
+    return $(this).addClass('focus');
+});

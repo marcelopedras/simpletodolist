@@ -1,0 +1,12 @@
+<div class='task_header'>
+    <span><%=if task.completed? then "#{date_to_s(task.finished_at)} (Completed)" end%></span>
+    <%if editable%>
+        <%= image_button('delete task', 'application_delete', {:class => 'right delete_task', :task_id => task.id})%>
+        <%= task.completed? ? image_button('undo task', 'delete', {:class => 'right undo_task', :task_id => task.id}) : image_button('complete task', 'accept', {:class => 'right complete_task', :task_id => task.id}) %>
+    <%end%>
+    <h2 <%= "class=completed" if task.completed?%>>Tarefa: <%=task.title%></h2>
+</div>
+<div class='task'>
+   <h3 class="description_label">Descrição</h3>
+   <p class="description"><%=task.description%></p>
+</div>

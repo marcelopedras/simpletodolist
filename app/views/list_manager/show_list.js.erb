@@ -1,0 +1,100 @@
+$('#form_list_div').hide();
+$('#form_task_div').hide();
+$('#form_find_favorite').hide();
+$('#new_list').trigger('reset');
+$('#new_task').trigger('reset');
+$('#list').remove();
+$('#add_task').remove();
+$('#undo_favorite').remove();
+$('#public_lists').remove();
+
+$("<%=sanitize_html("show_list", {:list => @list, :editable => @editable})%>").appendTo("#manage_lists");
+
+
+<%@list.tasks.each do |t| %>
+$('#append_task').append("<%=sanitize_html('show_task', {:task => t, :editable => @editable})%>");
+<%end%>
+
+if($('#append_task').children().size() >= 2)
+{
+    $('#append_task').accordion({collapsible: true});
+}
+
+
+
+
+
+
+
+
+$('#add_task').click(function(){
+    $('.focus').removeClass('focus');
+    $('#form_task_div').show();
+    $('#list').hide();
+    $(this).hide();
+});
+$('#new_task #task_list_id').val(<%=@list.id%>);
+$('.accordion_lists').accordion();
+
+$(".complete_list").click(function() {
+    return $.post('/complete_list', {
+        list_id: $(this).attr('list_id')
+    });
+});
+
+$(".undo_list").click(function() {
+    return $.post('/complete_list', {
+        list_id: $(this).attr('list_id'),
+        undo: true
+    });
+});
+
+$(".complete_task").click(function(e) {
+    $('#append_task').accordion({beforeActivate: function(x,y){x.preventDefault()}});
+    return $.post('/complete_task', {
+        task_id: $(this).attr('task_id')
+    });
+});
+
+$(".undo_task").click(function(e) {
+    $('#append_task').accordion({beforeActivate: function(x,y){x.preventDefault()}});
+    return $.post('/complete_task', {
+        task_id: $(this).attr('task_id'),
+        undo: true
+    });
+});
+
+$(".delete_list").click(function(e) {
+    $('#append_task').accordion({beforeActivate: function(x,y){x.preventDefault()}});
+    return $.post('/delete_list', {
+        list_id: $(this).attr('list_id')
+    });
+});
+
+
+$(".delete_task").click(function(e) {
+    $('#append_task').accordion({beforeActivate: function(x,y){x.preventDefault()}});
+    return $.post('/delete_task', {
+        task_id: $(this).attr('task_id')
+    });
+});
+
+$(".clickable").click(function() {
+    $('.focus').removeClass('focus');
+    return $(this).addClass('focus');
+});
+
+$('#undo_favorite').click(function(){
+    $.post('/delete_favorite',{
+        list_id: $(this).attr('list_id'),
+        undo: true
+    });
+});
+
+
+
+
+
+
+
+

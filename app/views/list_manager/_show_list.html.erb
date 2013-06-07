@@ -1,0 +1,30 @@
+<div id="list">
+  <div id='list_header'>
+    <div>
+      <%if editable%>
+        <%= image_button('delete list', 'application_delete', {:class => 'right delete_list', :list_id => list.id})%>
+        <%= list.completed? ? image_button('undo list', 'delete', {:class => 'right undo_list', :list_id => list.id}) : image_button('complete list', 'accept', {:class => 'right complete_list', :list_id => list.id}) %>
+      <%end%>
+      <h3 <%="class=completed" if list.completed?%>>
+        Lista:<%=list.public? ? "Pública" : " Particular"%>
+        <spam><%="(Completed) #{date_to_s(list.finished_at)}" if list.completed? %></spam>
+      </h3>
+      <p class="title"><%=list.title%></p>
+     </div>
+        <h3>Descrição:</h3>
+        <p><%=list.description%></p>
+  </div>
+
+    <div id='append_task'>
+    </div>
+</div>
+<%if editable%>
+    <%=image_button('add Task', 'add', {:id => 'add_task'})%>
+<%end%>
+
+<%if @undo_favorite%>
+    <%=image_button('undo favorites', 'thumb_down', {:id => 'undo_favorite', :list_id => list.id})%>
+<%end%>
+
+
+

@@ -1,0 +1,73 @@
+$('#public_lists').remove();
+$('#form_list_div').hide();
+$('#new_list').trigger('reset');
+$("<%=sanitize_html("show_list", {:list => @list, :editable => @editable})%>").appendTo("#manage_lists");
+
+$('#add_task').click(function(){
+    $('.focus').removeClass('focus');
+    $('#form_task_div').show();
+    $('#list').hide();
+    $(this).hide();
+});
+$('#new_task #task_list_id').val(<%=@list.id%>);
+$('.accordion_lists').accordion();
+
+last_row=$('.my_list').last();
+
+if(last_row.size() !=0)
+{
+    if(last_row.hasClass('cor1'))
+    {
+        cor = 'cor2';
+    }
+    else
+    {
+        cor = 'cor1';
+    }
+    append = last_row.parent();
+}
+else
+{
+    append = $('#show_lists tbody');
+    cor = 'cor1';
+}
+    append.append("<%=sanitize_html("row_list", {:l => @list, :cor => 'coringa', :my_class => 'my_list'})%>");
+    $('#list_<%=@list.id%>').removeClass('coringa').addClass(cor);
+
+$(".my_list").click(function() {
+    return $.get('/show_list', {
+        list_id: $(this).attr('list_id')
+    });
+});
+
+$('#list_<%=@list.id%>').addClass('focus');
+
+
+
+
+$(".complete_list").click(function() {
+    return $.post('/complete_list', {
+        list_id: $(this).attr('list_id')
+    });
+});
+
+$(".undo_list").click(function() {
+    return $.post('/complete_list', {
+        list_id: $(this).attr('list_id'),
+        undo: true
+    });
+});
+
+$(".delete_list").click(function(e) {
+    $('#append_task').accordion({beforeActivate: function(x,y){x.preventDefault()}});
+    return $.post('/delete_list', {
+        list_id: $(this).attr('list_id')
+    });
+});
+
+$(".clickable").click(function() {
+    $('.focus').removeClass('focus');
+    return $(this).addClass('focus');
+});
+
+

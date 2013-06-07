@@ -1,0 +1,18 @@
+$('#list_<%=@list_id%>').remove();
+$('#list').remove();
+$('#show_lists').children().remove();
+$('#add_task').remove();
+$('#show_lists').append("<%= sanitize_html('lists', {:list_name=>'Minhas Listas', :lists=>@lists, :my_class => 'my_list'})%>");
+
+$(".my_list").click(function() {
+    return $.get('/show_list', {
+        list_id: $(this).attr('list_id')
+    });
+});
+
+$(".clickable").click(function() {
+    $('.focus').removeClass('focus');
+    return $(this).addClass('focus');
+});
+
+
