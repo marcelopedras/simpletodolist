@@ -29,7 +29,8 @@ class ListManagerController < ApplicationController
         @list.completed = true
         @list.finished_at = now
         @list.save!
-        @list.complete_the_tasks_that_have_not_yet_been_completed
+        #TODO Testar se realmente ao completar uma lista automaticamente suas respectives tarefas também são atualizadas
+        #@list.complete_the_tasks_that_have_not_yet_been_completed
       end
       render :show_list
     end

@@ -11,5 +11,8 @@ require 'spec_helper'
 #   end
 # end
 describe ListManagerHelper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it 'format the date' do
+    time = Time.new(1988, 4, 23)
+    (date_to_s(time) == "23/04/1988 00:00").should be_true
+  end
 end

@@ -2,7 +2,7 @@ class Favorite < ActiveRecord::Base
 
   #Relations
   belongs_to :user, :validate => true
-  belongs_to :list,:validate => true
+  belongs_to :list, :validate => true
 
   #Validations
   validates_presence_of :user
@@ -16,8 +16,11 @@ class Favorite < ActiveRecord::Base
 
   def check_if_the_list_is_public
     if(self.list)
-      if !self.list(true).public?
+      #TODO Testar se isso está funcionando sem reverificar o model
+      #if !self.list(true).public?
+      if !self.list.public?
         errors.add(:list_id, 'Uma lista privada não pode ser um favorito')
+        #false
       end
     else
       errors.add(:list_id, 'list_id deve ser válido')

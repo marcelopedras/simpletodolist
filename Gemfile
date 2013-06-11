@@ -42,3 +42,4 @@ gem 'rspec-rails'
 gem 'capybara'
 gem 'simple_form'
 gem 'jquery-ui-rails'
+gem "factory_girl_rails", "~> 4.0"
